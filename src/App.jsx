@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 import { getAllPokemon, getPokemon } from "./utils/pokemon";
+import Card from "./components/Card/Card";
 
 function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
@@ -15,7 +16,6 @@ function App() {
       // 各ポケモンの詳細なデータを取得
       loadPokemon(res.results);
       setLoading(false);
-      // console.log(res.results);
     };
     fetchPokemonData();
   }, []);
@@ -23,7 +23,6 @@ function App() {
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
       data.map((pokemon) => {
-        // console.log(pokemon)
         let pokemonRecord = getPokemon(pokemon.url);
         return pokemonRecord;
       })
@@ -36,7 +35,11 @@ function App() {
       {loading ? (
         <h1>ロード中・・・</h1>
       ) : (
-        <h1>ポケモンデータを取得しました</h1>
+        <div className="pokemonCardContainer">
+          {pokemonData.map((pokemon, i) => {
+            return <Card key={i} pokemon={pokemon} />;
+          })}
+        </div>
       )}
     </>
   );
