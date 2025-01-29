@@ -36,3 +36,10 @@
   transform: translateY(2px);
   box-shadow: none;
 }
+
+.loadText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

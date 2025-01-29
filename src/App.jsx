@@ -58,7 +58,7 @@ function App() {
     <>
       <Navbar />
       {loading ? (
-        <h1>ロード中・・・</h1>
+        <h1 className="loadText">ロード中・・・</h1>
       ) : (
         <>
           <div className="pokemonCardContainer">
